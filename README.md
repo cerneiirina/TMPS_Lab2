@@ -6,7 +6,7 @@
 
 Были выбраны 5 шаблонов:
 
-## Decorator
+## 1. Decorator
 ![Decorator](https://refactoring.guru/images/patterns/cards/decorator-mini-2x.png)
 
 Декоратор — это структурный паттерн проектирования, который позволяет динамически добавлять объектам новую функциональность, оборачивая их в полезные «обёртки».
@@ -24,7 +24,7 @@ Draw(){
         this.Context.fill();
     }
 ```
-## Bridge
+## 2. Bridge
 ![Bridge](https://refactoring.guru/images/patterns/cards/bridge-mini-2x.png)
 
 Мост — это структурный паттерн проектирования, который разделяет один или несколько классов на две отдельные иерархии — абстракцию и реализацию, позволяя изменять их независимо друг от друга.
@@ -54,7 +54,7 @@ class Circle {
 }
 ```
 
-## Iterator
+## 3. Iterator
 ![Iterator](https://refactoring.guru/images/patterns/cards/iterator-mini-2x.png)
 
 Итератор — это поведенческий паттерн проектирования, который даёт возможность последовательно обходить элементы составных объектов, не раскрывая их внутреннего представления.
@@ -112,7 +112,7 @@ class Iterator implements IITerator{
 export default Iterator
 ```
 
-## Memento
+## 4. Memento
 ![Iterator](https://refactoring.guru/images/patterns/cards/memento-mini-2x.png)
 
 Снимок — это поведенческий паттерн проектирования, который позволяет сохранять и восстанавливать прошлые состояния объектов, не раскрывая подробностей их реализации.
@@ -150,5 +150,50 @@ class Circle implements IMementoCircle{
             return this;
         }
     }
+}
+```
+
+## 5. Adapter
+![Adapter](https://refactoring.guru/images/patterns/cards/adapter-mini-2x.png)
+
+Адаптер — это структурный паттерн проектирования, который позволяет объектам с несовместимыми интерфейсами работать вместе.
+
+Пример проблемы, где может пригодиться этот паттерн:
+ Представьте, что вы делаете приложение для торговли на бирже. Ваше приложение скачивает биржевые котировки из нескольких источников в XML, а затем рисует красивые графики.
+
+В какой-то момент вы решаете улучшить приложение, применив стороннюю библиотеку аналитики. Но вот беда — библиотека поддерживает только формат данных JSON, несовместимый с вашим приложением.
+
+![Adapter](https://refactoring.guru/images/patterns/diagrams/adapter/problem-2x.png)
+
+Вы смогли бы переписать библиотеку, чтобы та поддерживала формат XML. Но, во-первых, это может нарушить работу существующего кода, который уже зависит от библиотеки. А во-вторых, у вас может просто не быть доступа к её исходному коду.
+
+### Hex color Interface
+```
+interface IColorHEX{
+    Hex:string;
+}
+
+export default IColorHEX;
+```
+
+### RGB color Interface
+```
+interface IColorRGB{
+    Red:number;
+    Green:number;
+    Blue:number;
+}
+
+export default IColorRGB;
+```
+
+### Color Adapter класс который позволяет RGB и HEX объединить
+
+```
+class ColorAdapter implements IColorHEX,IColorRGB{
+    public Red:number;
+    public Green:number;
+    public Blue:number;
+    public Hex:string;
 }
 ```
